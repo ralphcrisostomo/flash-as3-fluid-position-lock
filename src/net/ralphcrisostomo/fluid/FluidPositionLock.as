@@ -11,8 +11,8 @@
  * 	import net.ralphcrisostomo.net.FluidPositionLock;
  * 
  * 	// Available Position: top, right, bottom, left, top-right, top-left, down-right, down-left
- * 	// new FluidPositionLock( MovieClip, stage, 0, 0, Position);
- * 	// new FluidPositionLock( MovieClip, stage); // Center Lock
+ * 	// FluidPositionLock.add( MovieClip, stage, 0, 0, Position);
+ * 	// FluidPositionLock.add( MovieClip, stage); // Center Lock
  * ---
  * 
  */
@@ -28,6 +28,8 @@ package net.ralphcrisostomo.fluid
 	public class FluidPositionLock extends MovieClip
 	{
 		// PROPERTIES
+		private static var __list:Array = new Array();
+		
 		private var _mc:MovieClip;
 		private var _stage:Stage;
 		private var _offsetHorizontal:int;
@@ -53,6 +55,13 @@ package net.ralphcrisostomo.fluid
 		}
 		
 		// METHOD
+		public static function add(mc:MovieClip, stage:Stage, offsetHorizontal:uint = 0, offsetVertical:uint = 0, position:String = null) {
+			
+			var fluidPos:FluidPositionLock = new FluidPositionLock(mc, stage, offsetHorizontal, offsetVertical, position);
+				__list.push(fluidPos);
+			
+		}
+		
 		private function onResize(e:Event = null):void
 		{
 			// Lock Position
